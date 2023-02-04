@@ -41,11 +41,26 @@ const getDate = (adate) =>{
 }
 
 const getDay = (adate) =>{
-    const [bdate, time] = adate.split(" ");
+    let [bdate, time] = adate.split(" ");
     const week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const convertDate = new Date(bdate);
     const currentDay = week[convertDate.getDay()];
-    return currentDay+" | "+time;
+    let [hours, minutes] = time.split(":");
+    changeWeatherImage(hours);
+    if(hours>12){
+        hours = hours - 12;
+        minutes = minutes + " pm";
+    } else if(hours == 12){
+        minutes = minutes + " pm";
+    } else {
+        minutes = minutes + " am";
+    }
+    return currentDay+" | "+hours+":"+minutes;
+}
+
+const changeWeatherImage = (hrs) => {
+    if(hrs>=6 && hrs<=17)
+    document.getElementById("weatherImage").src =  "/images/WeatherIcon - 2-39.svg";
 }
 
 const showWeatherDetails = () =>{
