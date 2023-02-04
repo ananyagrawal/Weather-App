@@ -15,12 +15,14 @@ const getWeatherData = async(location) => {
     }
 }
 
+// Get location entered in search bar
 const getLocation = () => {
     const locationNameSearch = document.getElementById("searchBox").value;
     console.log(locationNameSearch)
     return locationNameSearch;
 }
 
+// Get the changed format of date to display
 const getDate = (adate) =>{
     const bdate = adate.split(" ")[0];
     let [y,m,d] = bdate.split("-");
@@ -40,6 +42,7 @@ const getDate = (adate) =>{
     return res;
 }
 
+// Get the day from the given date
 const getDay = (adate) =>{
     let [bdate, time] = adate.split(" ");
     const week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -58,11 +61,13 @@ const getDay = (adate) =>{
     return currentDay+" | "+hours+":"+minutes;
 }
 
+// Change Weather Image according to morning/night
 const changeWeatherImage = (hrs) => {
     if(hrs>=6 && hrs<=17)
     document.getElementById("weatherImage").src =  "/images/WeatherIcon - 2-39.svg";
 }
 
+// Display all weather details according to location after the search is entered
 const showWeatherDetails = () =>{
     const loc = getLocation();
     const weatherData =  getWeatherData(loc).then(data=>{
@@ -78,6 +83,7 @@ const showWeatherDetails = () =>{
     });
 }
 
+// Update temperature according to the unit: celsius or fahrenheit
 const updateTemp = (temp_unit) => {
     const loc = getLocation();
     const weatherData = getWeatherData(loc).then(data => {
@@ -88,6 +94,7 @@ const updateTemp = (temp_unit) => {
     })
 }
 
+// Change Celsius to Fahrenheit and display change 
 const changeUnit1 = () =>{
     updateTemp(1);
     document.getElementById("unit").innerText = "\u00B0F";
@@ -95,9 +102,9 @@ const changeUnit1 = () =>{
     celsiusDiv.classList.remove("active");
     const fahrenheitDiv = document.getElementById("fDiv");
     fahrenheitDiv.classList.add("active");
-    // const temp = document.getElementById("currentTemp").textContent;
-    // document.getElementById("currentTemp").innerText = Math.round((temp*9/5)+32);
 }
+
+// Change Fahrenheit to Celsius and display change
 const changeUnit2 = () =>{
     updateTemp(2);
     document.getElementById("unit").innerText = "\u00B0C";
@@ -105,6 +112,4 @@ const changeUnit2 = () =>{
     celsiusDiv.classList.add("active");
     const fahrenheitDiv = document.getElementById("fDiv");
     fahrenheitDiv.classList.remove("active");
-    // const temp = document.getElementById("currentTemp").textContent;
-    // document.getElementById("currentTemp").innerText = Math.round((temp-32)*5/9);
 }
