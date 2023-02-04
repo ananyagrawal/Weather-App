@@ -18,48 +18,52 @@
                     <img class="weather-icon" src="\images\WeatherIcon - 2-40(1).svg" alt="Weather Icon">
                 </div>
                 <div class="weather-temp">
-                    <div class="weather-digit">
+                    <div id="currentTemp" class="weather-digit">
                         27
                     </div>
-                    <div class="weather-unit">
-                        &#8451
+                    <!-- <p>&deg</p> -->
+                    <div id="unit" class="weather-unit">
+                        &deg;C
                     </div>
                 </div>
                 <div class="date-container">
-                    <div class="weather-date">3rd February '23</div>
-                    <div class="weather-day">Friday | 10:19 pm</div>
+                    <div id="date" class="weather-date">3rd February '23</div>
+                    <div id="day" class="weather-day">Friday | 10:19 pm</div>
                 </div>
                 <div class="weather-detail-summary">
                     <div class="component-container">
                         <img src="\images\wind.svg" alt="">
                         <p class="weather-component-heading">Wind</p>
-                        <p class="wind-value">10</p>
+                        <p id="wind-value">10</p>
                         <p class="weather-component-heading">km/h</p>
                     </div>
                     <div class="component-container">
                         <img src="\images\humidity.svg" alt="">
                         <p class="weather-component-heading">Hum</p>
-                        <p class="humidity-value">10</p>
-                        <p class="weather-component-heading">km/h</p>
+                        <p id="humidity-value">10</p>
+                        <p class="weather-component-heading">%</p>
                     </div>
                     <div class="component-container">
                         <img src="\images\rain.svg" alt="">
                         <p class="weather-component-heading">Rain</p>
-                        <p class="rain-value">10</p>
-                        <p class="weather-component-heading">km/h</p>
+                        <p id="rain-value">10</p>
+                        <p class="weather-component-heading">%</p>
                     </div>
                 </div>
             </div>
             <div class="tempunit">
                 <div class="tempunit-container">  
-                    <button class="fahrenheitbtn">F</button>
-                    <button class="celsiusbtn">C</button>
+                    <button id="fDiv" class="fahrenheitbtn" onclick="changeUnit1()">F</button>
+                    <button id="cDiv" class="celsiusbtn active" onclick="changeUnit2()">C</button>
                 </div>
             </div>
         </div>
         <div class="weather-container-right">
             <div class="search-container">
-                <input class="searchInputbox" type="text">
+                <input id="searchBox" class="searchInputbox" type="text" placeholder="">
+                <button id="searchBtn" class="searchbtn" onclick="showWeatherDetails()">
+                    <img class="search-icon" src="\images\search.svg" alt="">
+                </button>
             </div>
         </div>
     </div>
