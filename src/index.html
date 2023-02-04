@@ -59,16 +59,16 @@
             </div>
         </div>
         <div class="weather-container-right">
-            <div class="location-container">
-                <div class="location-subcontainer">
+            <div id="loc-container" class="location-container">
+                <div id="loc-box" class="location-subcontainer">
                     <div class="mapIcon">
                         <img src="/images/map.svg" alt="">
                     </div>
-                    <div class="location-name">Delhi, India</div>
+                    <div id="location" class="location-name">Delhi, India</div>
                 </div>
                 <div class="search-container">
                     <input id="searchBox" class="searchInputbox" type="text" placeholder="">
-                    <button id="searchBtn" class="searchbtn" onclick="showWeatherDetails()">
+                    <button id="searchBtn" class="searchbtn" onclick="expandSearchBar()">
                         <img class="search-icon" src="\images\search.svg" alt="">
                     </button>
                 </div>

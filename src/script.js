@@ -17,8 +17,9 @@ const getWeatherData = async(location) => {
 
 // Get location entered in search bar
 const getLocation = () => {
-    const locationNameSearch = document.getElementById("searchBox").value;
+    let locationNameSearch = document.getElementById("searchBox").value;
     console.log(locationNameSearch)
+    locationNameSearch.value = '';
     return locationNameSearch;
 }
 
@@ -79,13 +80,14 @@ const showWeatherDetails = () =>{
         document.getElementById("wind-value").innerText = data.current.wind_kph;
         document.getElementById("humidity-value").innerText = data.current.humidity;
         document.getElementById("rain-value").innerText = data.current.precip_mm;
-
+        document.getElementById("location").innerText = data.location.name+", "+data.location.region;
     });
 }
 
 // Update temperature according to the unit: celsius or fahrenheit
 const updateTemp = (temp_unit) => {
-    const loc = getLocation();
+    // const loc = getLocation();
+    const loc = document.getElementById("location").innerText;
     const weatherData = getWeatherData(loc).then(data => {
         if(temp_unit == 1)
         document.getElementById("currentTemp").innerText = Math.round(data.current.temp_f);
@@ -112,4 +114,22 @@ const changeUnit2 = () =>{
     celsiusDiv.classList.add("active");
     const fahrenheitDiv = document.getElementById("fDiv");
     fahrenheitDiv.classList.remove("active");
+}
+
+let count = 0;
+
+const expandSearchBar = () =>{
+    if(count==0){
+        document.getElementById("loc-box").classList.add("remove");
+        document.getElementById("searchBox").classList.add("focus");
+        document.getElementById("searchBtn").classList.add("focus-search-icon");
+        count++;
+    } else {
+        showWeatherDetails();
+        document.getElementById("searchBox").classList.remove("focus");
+        document.getElementById("searchBox").value = "";
+        document.getElementById("searchBtn").classList.remove("focus-search-icon");
+        document.getElementById("loc-box").classList.remove("remove");
+        count = 0;
+    }
 }
