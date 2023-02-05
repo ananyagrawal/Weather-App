@@ -19,8 +19,25 @@ const getWeatherData = async(location) => {
 const getLocation = () => {
     let locationNameSearch = document.getElementById("searchBox").value;
     console.log(locationNameSearch)
+    showWeatherDetails(locationNameSearch);
     locationNameSearch.value = '';
-    return locationNameSearch;
+}
+
+const getGeoLocation = () => {
+    success = (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        console.log(latitude, longitude);
+        showWeatherDetails(latitude+"%2C"+longitude);
+    }
+    error = () => {
+        console.log("Unable to retreive your location");
+    }
+    if(!navigator.geolocation) {
+        console.log("Geolocation not supported");
+    } else {
+        navigator.geolocation.getCurrentPosition(success,error);
+    }
 }
 
 // Get the changed format of date to display
@@ -69,8 +86,8 @@ const changeWeatherImage = (hrs) => {
 }
 
 // Display all weather details according to location after the search is entered
-const showWeatherDetails = () =>{
-    const loc = getLocation();
+const showWeatherDetails = (loc) =>{
+    // const loc = getLocation();
     const weatherData =  getWeatherData(loc).then(data=>{
         console.log(data.current.temp_c)
         document.getElementById("currentTemp").innerText = Math.round(data.current.temp_c);
@@ -125,7 +142,7 @@ const expandSearchBar = () =>{
         document.getElementById("searchBtn").classList.add("focus-search-icon");
         count++;
     } else {
-        showWeatherDetails();
+        getLocation();
         document.getElementById("searchBox").classList.remove("focus");
         document.getElementById("searchBox").value = "";
         document.getElementById("searchBtn").classList.remove("focus-search-icon");

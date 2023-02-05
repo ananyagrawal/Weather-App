@@ -5,7 +5,7 @@ body{
 .container{
     display: flex;
     width: 100%;
-    background: linear-gradient(248.66deg, #F0B5CE 0%, #8C6BAE 100%);
+    background: linear-gradient(148.66deg, #F0B5CE 0%, #8C6BAE 100%);
     /* transform: rotate(180deg); */
     height: 600px;
 }
