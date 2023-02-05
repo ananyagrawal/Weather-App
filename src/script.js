@@ -83,7 +83,7 @@ const getDay = (adate) =>{
 // Change Weather Image according to morning/night
 const changeWeatherImage = (hrs) => {
     if(hrs>=6 && hrs<=17)
-    document.getElementById("weatherImage").src =  "/images/WeatherIcon - 2-39.svg";
+    document.getElementById("weatherImage").src =  "images/WeatherIcon - 2-39.svg";
 }
 
 // Display all weather details according to location after the search is entered
