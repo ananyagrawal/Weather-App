@@ -23,6 +23,7 @@ const getLocation = () => {
     locationNameSearch.value = '';
 }
 
+// Get location of user: latitude & longitude
 const getGeoLocation = () => {
     success = (position) => {
         const latitude = position.coords.latitude;
@@ -87,7 +88,6 @@ const changeWeatherImage = (hrs) => {
 
 // Display all weather details according to location after the search is entered
 const showWeatherDetails = (loc) =>{
-    // const loc = getLocation();
     const weatherData =  getWeatherData(loc).then(data=>{
         console.log(data.current.temp_c)
         document.getElementById("currentTemp").innerText = Math.round(data.current.temp_c);
@@ -103,7 +103,6 @@ const showWeatherDetails = (loc) =>{
 
 // Update temperature according to the unit: celsius or fahrenheit
 const updateTemp = (temp_unit) => {
-    // const loc = getLocation();
     const loc = document.getElementById("location").innerText;
     const weatherData = getWeatherData(loc).then(data => {
         if(temp_unit == 1)
@@ -133,8 +132,9 @@ const changeUnit2 = () =>{
     fahrenheitDiv.classList.remove("active");
 }
 
-let count = 0;
 
+// Expanding and Shrinking search box based on count and call getLocation()
+let count = 0;
 const expandSearchBar = () =>{
     if(count==0){
         document.getElementById("loc-box").classList.add("remove");
@@ -151,6 +151,7 @@ const expandSearchBar = () =>{
     }
 }
 
+// EventListener for searching by Enter key
 const searchInputDiv = document.getElementById("searchBox");
 searchInputDiv.addEventListener('keyup', key);
 function key(e){
