@@ -27,10 +27,10 @@ const getGeoLocation = () => {
     success = (position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-        console.log(latitude, longitude);
         showWeatherDetails(latitude+"%2C"+longitude);
     }
     error = () => {
+        showWeatherDetails("Dehradun")
         console.log("Unable to retreive your location");
     }
     if(!navigator.geolocation) {
@@ -149,4 +149,11 @@ const expandSearchBar = () =>{
         document.getElementById("loc-box").classList.remove("remove");
         count = 0;
     }
+}
+
+const searchInputDiv = document.getElementById("searchBox");
+searchInputDiv.addEventListener('keyup', key);
+function key(e){
+    if(e.code == "Enter")
+    expandSearchBar();
 }
